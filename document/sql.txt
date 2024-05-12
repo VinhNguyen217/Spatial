@@ -1,0 +1,23 @@
+// Insert GeoJson to PostGIS
+insert into spatial(geom)
+values (ST_TRANSFORM(ST_GeomFromGeoJSON('{
+    "type":"Polygon",
+    "coordinates":[[
+        [
+              106.8337576644156,
+              10.945470908659445
+            ],
+            [
+              106.8326752086245,
+              10.943664204150664
+            ],
+            [
+              106.83494836578649,
+              10.942016905145607
+            ],
+            [
+              106.8366532336596,
+              10.942362307309011
+            ]
+    ]]
+}'), 4326));
