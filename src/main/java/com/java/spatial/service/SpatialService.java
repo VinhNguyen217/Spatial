@@ -1,4 +1,4 @@
-package com.java.spatial;
+package com.java.spatial.service;
 
 import com.java.spatial.model.FeatureType;
 import com.java.spatial.model.FeatureTypeRequest;
@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +26,8 @@ public class SpatialService {
     private RestTemplate restTemplate;
 
     public void connectPostGis() throws IOException {
+        Instant start = Instant.now();
+
         Map<String, Object> params = new HashMap<>();
         params.put("dbtype", "postgis");
         params.put("host", "localhost");
@@ -37,9 +41,12 @@ public class SpatialService {
 
         DataStore dataStore = DataStoreFinder.getDataStore(params);
         System.out.printf(dataStore.toString());
+        Instant end = Instant.now();
+        Duration timeElapsed = Duration.between(start, end);
+        System.out.println("Time : " + timeElapsed.toMillis());
     }
 
-    public String publicLayer(String tableName){
+    public String publicLayer(String tableName) {
         String geoUserName = "admin";
         String geoPassword = "geoserver";
         String geoDomain = "http://localhost:8085/geoserver/rest";

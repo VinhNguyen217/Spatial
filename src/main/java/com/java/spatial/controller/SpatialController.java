@@ -1,5 +1,6 @@
-package com.java.spatial;
+package com.java.spatial.controller;
 
+import com.java.spatial.service.SpatialService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
